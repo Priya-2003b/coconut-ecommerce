@@ -1,8 +1,49 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../api/axios";
+import { useToast } from "../context/ToastContext";
 
 function Footer() {
+  const { showToast } = useToast();
+  const [email, setEmail] = useState("");
+  const [subscribing, setSubscribing] = useState(false);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setSubscribing(true);
+    try {
+      const res = await api.post("/subscribers", { email });
+      showToast(res.data.message || "Subscribed!");
+      setEmail("");
+    } catch (err) {
+      showToast(err.response?.data?.message || "Something went wrong", "error");
+    } finally {
+      setSubscribing(false);
+    }
+  };
+
   return (
     <footer className="footer">
+      <div className="footer-newsletter">
+        <div>
+          <h3>Stay in the loop</h3>
+          <p>Get updates on new products and offers — no spam, ever.</p>
+        </div>
+        <form onSubmit={handleSubscribe} className="footer-newsletter-form">
+          <input
+            type="email"
+            placeholder="Your email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <button type="submit" disabled={subscribing}>
+            {subscribing ? "..." : "Subscribe"}
+          </button>
+        </form>
+      </div>
+
       <div className="footer-grid">
         {/* Contact Details */}
         <div className="footer-col">
@@ -48,7 +89,6 @@ function Footer() {
         {/* Location */}
         <div className="footer-col">
           <h3>Location</h3>
-          {/* TODO: replace with real Google Maps embed iframe once Rupesh confirms exact map link */}
           <a
             href="https://www.google.com/maps/search/?api=1&query=No.41+GR+Kalyana+Mantap+Hebbal+ORR+Bangalore+560094"
             target="_blank"

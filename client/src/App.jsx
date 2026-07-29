@@ -4,12 +4,18 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
+import CategoriesPage from "./pages/CategoriesPage";
 import Gallery from "./pages/Gallery";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import MyInquiries from "./pages/MyInquiries";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminProducts from "./pages/admin/AdminProducts";
+import AdminCategories from "./pages/admin/AdminCategories";
+import AdminInquiries from "./pages/admin/AdminInquiries";
+import AdminGallery from "./pages/admin/AdminGallery";
+import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -20,6 +26,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/products" element={<Products />} />
       <Route path="/products/:id" element={<ProductDetail />} />
+      <Route path="/categories" element={<CategoriesPage />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
@@ -42,6 +49,40 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/admin/products"
+        element={
+          <ProtectedRoute adminOnly>
+            <AdminProducts />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/categories"
+        element={
+          <ProtectedRoute adminOnly>
+            <AdminCategories />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/inquiries"
+        element={
+          <ProtectedRoute adminOnly>
+            <AdminInquiries />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/gallery"
+        element={
+          <ProtectedRoute adminOnly>
+            <AdminGallery />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>

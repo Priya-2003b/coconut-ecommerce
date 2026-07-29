@@ -6,6 +6,10 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import inquiryRoutes from "./routes/inquiryRoutes.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
+import subscriberRoutes from "./routes/subscriberRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
+import galleryRoutes from "./routes/galleryRoutes.js";
 
 dotenv.config();
 
@@ -18,6 +22,10 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/inquiries", inquiryRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/subscribers", subscriberRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api/gallery", galleryRoutes);
 
 app.get("/", (req, res) => {
   res.send("Coconut/Agro catalog API is running");

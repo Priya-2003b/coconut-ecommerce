@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import api from "../api/axios";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const activeCategory = searchParams.get("category") || "All";
 
@@ -18,10 +20,17 @@ function Products() {
 
   const categories = ["All", ...new Set(products.map((p) => p.category))];
 
-  const filtered =
-    activeCategory === "All"
-      ? products
-      : products.filter((p) => p.category === activeCategory);
+  const filtered = products
+    .filter((p) => activeCategory === "All" || p.category === activeCategory)
+    .filter((p) => {
+      const term = searchTerm.trim().toLowerCase();
+      if (!term) return true;
+      return (
+        p.name.toLowerCase().includes(term) ||
+        p.description.toLowerCase().includes(term) ||
+        p.category.toLowerCase().includes(term)
+      );
+    });
 
   const handleFilter = (cat) => {
     if (cat === "All") {
@@ -43,6 +52,18 @@ function Products() {
       </div>
 
       <div className="products-page">
+        <Breadcrumbs items={[{ label: "Home", to: "/" }, { label: "Products" }]} />
+
+        <div className="products-search-row">
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="products-search-input"
+          />
+        </div>
+
         {!loading && categories.length > 1 && (
           <div className="category-tabs">
             {categories.map((cat) => (
@@ -58,10 +79,20 @@ function Products() {
         )}
 
         {loading ? (
-          <p className="products-empty">Loading products...</p>
+          <div className="products-grid">
+            {[...Array(6)].map((_, i) => (
+              <div className="product-card-skeleton" key={i}>
+                <div className="skeleton-block product-card-skeleton-image" />
+                <div className="skeleton-block product-card-skeleton-line short" />
+                <div className="skeleton-block product-card-skeleton-line" />
+              </div>
+            ))}
+          </div>
         ) : filtered.length === 0 ? (
           <p className="products-empty">
-            No products yet — add some from the admin dashboard.
+            {searchTerm
+              ? `No products match "${searchTerm}".`
+              : "No products yet — add some from the admin dashboard."}
           </p>
         ) : (
           <div className="products-grid">
@@ -78,8 +109,7 @@ function Products() {
                   <h3>{p.name}</h3>
                   <p className="product-card-category">{p.category}</p>
                   <div className="product-card-footer">
-                    <p className="product-card-price">{p.priceNote}</p>
-                    <span className="product-card-link">View Details →</span>
+                    <span className="product-card-quote">Get Quote →</span>
                   </div>
                 </div>
               </Link>

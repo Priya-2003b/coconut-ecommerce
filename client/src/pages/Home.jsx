@@ -85,50 +85,52 @@ function Home() {
     <div>
       {/* Hero Section */}
       <section className={`hero ${heroVisible ? "in-view" : ""}`} ref={heroRef}>
-        <div className="hero-content">
-          <span className="hero-badge hero-fade-1">Est. in trust, grown with care</span>
-          <h1 className="hero-heading hero-fade-2">
-            From Soil to
-            <br />
-            <span className="hero-heading-accent">Shelf, Honestly.</span>
-          </h1>
-          <p className="hero-subtext hero-fade-3">
-            Premium agricultural products sourced directly from trusted
-            farmers. From rice and pulses to spices, dry fruits, coffee, tea,
-            and coconuts — quality you can trust for wholesale, retail, and
-            hospitality.
-          </p>
+        <div className="section-inner hero-inner">
+          <div className="hero-content">
+            <span className="hero-badge hero-fade-1">Est. in trust, grown with care</span>
+            <h1 className="hero-heading hero-fade-2">
+              From Soil to Shelf,
+              <br />
+              <span className="hero-heading-accent">Honestly.</span>
+            </h1>
+            <p className="hero-subtext hero-fade-3">
+              Premium agricultural products, sourced directly from trusted
+              farmers — for wholesale, retail, and hospitality.
+            </p>
 
-          <ul className="trust-badges hero-fade-3">
-            <li>✔ Farm Fresh</li>
-            <li>✔ Premium Quality</li>
-            <li>✔ Bulk Supply</li>
-            <li>✔ PAN India Delivery</li>
-          </ul>
+            <ul className="trust-badges hero-fade-3">
+              <li>✔ Farm Fresh</li>
+              <li>✔ Premium Quality</li>
+              <li>✔ Bulk Supply</li>
+              <li>✔ PAN India Delivery</li>
+            </ul>
 
-          <div className="hero-cta-group hero-fade-4">
-            <a href="/products" className="hero-cta">
-              Explore Products
-            </a>
-            <a href="/#contact" className="hero-cta hero-cta-secondary">
-              Get Wholesale Quote
-            </a>
+            <div className="hero-cta-group hero-fade-4">
+              <a href="/products" className="hero-cta">
+                Explore Products
+              </a>
+              <a href="/#contact" className="hero-cta hero-cta-secondary">
+                Get Wholesale Quote
+              </a>
+            </div>
           </div>
-        </div>
 
-        <div className="hero-visual hero-fade-4">
-          <HeroImageStack />
+          <div className="hero-visual hero-fade-4">
+            <HeroImageStack />
+          </div>
         </div>
       </section>
 
       {/* Stats strip */}
       <div className="stats-strip">
-        <StatCounter end={500} suffix="+" label="Premium Products" />
-        <StatCounter end={14} suffix="+" label="Partner Brands" />
-        <StatCounter end={1000} suffix="+" label="Happy Customers" />
-        <div className="stat-item">
-          <strong>Bulk Supply</strong>
-          <span>Across India</span>
+        <div className="section-inner stats-inner">
+          <StatCounter end={500} suffix="+" label="Premium Products" />
+          <StatCounter end={14} suffix="+" label="Partner Brands" />
+          <StatCounter end={1000} suffix="+" label="Happy Customers" />
+          <div className="stat-item">
+            <strong>Bulk Supply</strong>
+            <span>Across India</span>
+          </div>
         </div>
       </div>
 
@@ -137,172 +139,189 @@ function Home() {
         className={`pillars-section ${pillarsVisible ? "in-view" : ""}`}
         ref={pillarsRef}
       >
-        <span className="section-tag" style={{ textAlign: "center", display: "block" }}>
-          Our Purpose
-        </span>
-        <h2 className="section-heading" style={{ textAlign: "center" }}>
-          Four Pillars, One Promise
-        </h2>
-        <p className="pillars-subtext">
-          From the farms we partner with to the kitchens and shelves we
-          supply — everything we do sits on these four pillars.
-        </p>
+        <div className="section-inner">
+          <span className="section-tag" style={{ textAlign: "center", display: "block" }}>
+            Our Purpose
+          </span>
+          <h2 className="section-heading" style={{ textAlign: "center" }}>
+            Four Pillars, One Promise
+          </h2>
+          <p className="pillars-subtext">
+            From the farms we partner with to the kitchens and shelves we
+            supply — everything we do sits on these four pillars.
+          </p>
 
-        <div className="pillars-grid">
-          <div className="pillar-card">
-            <div className="pillar-icon">🌾</div>
-            <h3>Agri</h3>
-            <p>Sourced directly from verified farms and trusted suppliers.</p>
-          </div>
-          <div className="pillar-card">
-            <div className="pillar-icon">🍽️</div>
-            <h3>Food</h3>
-            <p>Quality-checked produce, grains, and spices — ready for your kitchen.</p>
-          </div>
-          <div className="pillar-card">
-            <div className="pillar-icon">🛒</div>
-            <h3>Retail</h3>
-            <p>Bulk and small-quantity orders, priced fairly for every buyer.</p>
-          </div>
-          <div className="pillar-card">
-            <div className="pillar-icon">🏨</div>
-            <h3>Hospitality</h3>
-            <p>Reliable, consistent supply for hotels, restaurants, and caterers.</p>
+          <div className="pillars-grid">
+            <div className="pillar-card">
+              <div className="pillar-icon">🌾</div>
+              <h3>Agri</h3>
+              <p>Sourced directly from verified farms and trusted suppliers.</p>
+            </div>
+            <div className="pillar-card">
+              <div className="pillar-icon">🍽️</div>
+              <h3>Food</h3>
+              <p>Quality-checked produce, grains, and spices — ready for your kitchen.</p>
+            </div>
+            <div className="pillar-card">
+              <div className="pillar-icon">🛒</div>
+              <h3>Retail</h3>
+              <p>Bulk and small-quantity orders, priced fairly for every buyer.</p>
+            </div>
+            <div className="pillar-card">
+              <div className="pillar-icon">🏨</div>
+              <h3>Hospitality</h3>
+              <p>Reliable, consistent supply for hotels, restaurants, and caterers.</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Product Categories */}
       <section className="categories-section">
-        <span className="section-tag" style={{ textAlign: "center", display: "block" }}>
-          Browse
-        </span>
-        <h2 className="section-heading" style={{ textAlign: "center" }}>
-          Product Categories
-        </h2>
+        <div className="section-inner">
+          <span className="section-tag" style={{ textAlign: "center", display: "block" }}>
+            Browse
+          </span>
+          <h2 className="section-heading" style={{ textAlign: "center" }}>
+            Product Categories
+          </h2>
 
-        <div className="categories-grid">
-          {[
-            { icon: "🌾", name: "Rice" },
-            { icon: "🥜", name: "Dry Fruits" },
-            { icon: "☕", name: "Coffee" },
-            { icon: "🍵", name: "Tea" },
-            { icon: "🌿", name: "Spices" },
-            { icon: "🥥", name: "Coconut Products" },
-            { icon: "🌱", name: "Pulses" },
-          ].map((cat) => (
-            <Link to="/products" key={cat.name} className="category-card">
-              <div className="category-card-icon">{cat.icon}</div>
-              <h3>{cat.name}</h3>
-            </Link>
-          ))}
+          <div className="categories-grid">
+            {[
+              { icon: "🌾", name: "Rice" },
+              { icon: "🥜", name: "Dry Fruits" },
+              { icon: "☕", name: "Coffee" },
+              { icon: "🍵", name: "Tea" },
+              { icon: "🌿", name: "Spices" },
+              { icon: "🥥", name: "Coconut Products" },
+              { icon: "🌱", name: "Pulses" },
+            ].map((cat) => (
+              <Link to="/products" key={cat.name} className="category-card">
+                <div className="category-card-icon">{cat.icon}</div>
+                <h3>{cat.name}</h3>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Why Choose Us */}
       <section className={`why-section ${whyVisible ? "in-view" : ""}`} ref={whyRef}>
-        <span className="section-tag" style={{ textAlign: "center", display: "block" }}>
-          Our Promise
-        </span>
-        <h2 className="section-heading" style={{ textAlign: "center" }}>
-          Why Choose Us
-        </h2>
+        <div className="section-inner">
+          <span className="section-tag" style={{ textAlign: "center", display: "block" }}>
+            Our Promise
+          </span>
+          <h2 className="section-heading" style={{ textAlign: "center" }}>
+            Why Choose Us
+          </h2>
 
-        <div className="why-grid">
-          {[
-            { icon: "🌱", title: "Direct Farmer Sourcing" },
-            { icon: "⭐", title: "Premium Quality" },
-            { icon: "💰", title: "Competitive Pricing" },
-            { icon: "📦", title: "Bulk Orders" },
-            { icon: "🚚", title: "Fast Delivery" },
-            { icon: "🏨", title: "Trusted by Hospitality Industry" },
-          ].map((item) => (
-            <div className="why-card" key={item.title}>
-              <div className="why-icon">{item.icon}</div>
-              <h3>{item.title}</h3>
-            </div>
-          ))}
+          <div className="why-grid">
+            {[
+              { icon: "🌱", title: "Direct Farmer Sourcing" },
+              { icon: "⭐", title: "Premium Quality" },
+              { icon: "💰", title: "Competitive Pricing" },
+              { icon: "📦", title: "Bulk Orders" },
+              { icon: "🚚", title: "Fast Delivery" },
+              { icon: "🏨", title: "Trusted by Hospitality Industry" },
+            ].map((item) => (
+              <div className="why-card" key={item.title}>
+                <div className="why-icon">{item.icon}</div>
+                <h3>{item.title}</h3>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* About summary */}
       <section className="about-section" id="about">
-        <div className="about-content">
-          <span className="section-tag">Who We Are</span>
-          <h2 className="section-heading">
-            Agriwhale — Purity you can Taste, Quality you can Trust!
-          </h2>
-          <p className="section-text about-lede">
-            We exist to close the gap between farm and table — sourcing
-            directly, verifying every batch, and delivering consistency our
-            customers can build their own businesses on.
-          </p>
-          <p className="section-text">
-            Agriwhale is a trusted name in premium agro and food products,
-            committed to delivering purity, freshness, and consistent quality
-            to our customers. We specialize in sourcing and supplying
-            high-grade products such as Cashew Nuts (W320, JH, LWP, 8pc,
-            Lali), Premium Cardamom (8mm), Kaveri Rice (Raw, Steam — 3 Years
-            Old, Basmati), Tur Dal, Moong Dal (Split), Urad Dal (Gola/Split),
-            Husk Coconuts, Dry Ball Kopra, Desiccated Coconut, Coffee Powder,
-            and Tea Powder. Our products are carefully selected from reliable
-            farmers and verified suppliers to ensure that every item meets
-            quality standards in taste, aroma, and nutrition.
-          </p>
+        <div className="section-inner about-inner">
+          <div className="about-content">
+            <span className="section-tag">Who We Are</span>
+            <h2 className="section-heading">
+              Agriwhale — Purity you can Taste, Quality you can Trust!
+            </h2>
+            <p className="section-text about-lede">
+              We exist to close the gap between farm and table — sourcing
+              directly, verifying every batch, and delivering consistency our
+              customers can build their own businesses on.
+            </p>
+            <p className="section-text">
+              Agriwhale is a trusted name in premium agro and food products,
+              committed to delivering purity, freshness, and consistent quality
+              to our customers. We specialize in sourcing and supplying
+              high-grade products such as Cashew Nuts (W320, JH, LWP, 8pc,
+              Lali), Premium Cardamom (8mm), Kaveri Rice (Raw, Steam — 3 Years
+              Old, Basmati), Tur Dal, Moong Dal (Split), Urad Dal (Gola/Split),
+              Husk Coconuts, Dry Ball Kopra, Desiccated Coconut, Coffee Powder,
+              and Tea Powder. Our products are carefully selected from reliable
+              farmers and verified suppliers to ensure that every item meets
+              quality standards in taste, aroma, and nutrition.
+            </p>
 
-          <ul className="about-features">
-            <li>Premium Quality Products</li>
-            <li>Bulk &amp; Retail Supply Available</li>
-            <li>Sourced from Verified Farmers &amp; Suppliers</li>
-          </ul>
+            <ul className="about-features">
+              <li>Premium Quality Products</li>
+              <li>Bulk &amp; Retail Supply Available</li>
+              <li>Sourced from Verified Farmers &amp; Suppliers</li>
+            </ul>
 
-          <a href="/#contact" className="about-cta">
-            Get in Touch
-          </a>
-        </div>
-        <div className="about-image">
-          <img src="/images/about-products.jpg" alt="Agriwhale product range" />
+            <a href="/#contact" className="about-cta">
+              Get in Touch
+            </a>
+          </div>
+          <div className="about-image">
+            <img
+              src="/images/about-products.png"
+              alt="Agriwhale product range"
+              onError={(e) => {
+                e.target.style.display = "none";
+                e.target.parentElement.classList.add("about-image-fallback");
+              }}
+            />
+          </div>
         </div>
       </section>
 
       {/* Featured Products */}
       <section className="featured-section">
-        <span className="section-tag" style={{ textAlign: "center", display: "block" }}>
-          Our Range
-        </span>
-        <h2 className="section-heading" style={{ textAlign: "center" }}>
-          Featured Products
-        </h2>
+        <div className="section-inner">
+          <span className="section-tag" style={{ textAlign: "center", display: "block" }}>
+            Our Range
+          </span>
+          <h2 className="section-heading" style={{ textAlign: "center" }}>
+            Featured Products
+          </h2>
 
-        {featured.length === 0 ? (
-          <p style={{ textAlign: "center", color: "#888" }}>
-            Products will appear here once added from the admin dashboard.
-          </p>
-        ) : (
-          <div className="featured-grid">
-            {featured.map((p) => (
-              <Link to={`/products/${p._id}`} key={p._id} className="featured-card">
-                <div className="featured-card-image">
-                  {p.images && p.images[0] ? (
-                    <img src={p.images[0]} alt={p.name} />
-                  ) : (
-                    <span>{p.category}</span>
-                  )}
-                </div>
-                <div className="featured-card-body">
-                  <h3>{p.name}</h3>
-                  <p className="featured-card-category">{p.category}</p>
-                  <span className="featured-card-link">View Details →</span>
-                </div>
-              </Link>
-            ))}
+          {featured.length === 0 ? (
+            <p style={{ textAlign: "center", color: "#888" }}>
+              Products will appear here once added from the admin dashboard.
+            </p>
+          ) : (
+            <div className="featured-grid">
+              {featured.map((p) => (
+                <Link to={`/products/${p._id}`} key={p._id} className="featured-card">
+                  <div className="featured-card-image">
+                    {p.images && p.images[0] ? (
+                      <img src={p.images[0]} alt={p.name} />
+                    ) : (
+                      <span>{p.category}</span>
+                    )}
+                  </div>
+                  <div className="featured-card-body">
+                    <h3>{p.name}</h3>
+                    <p className="featured-card-category">{p.category}</p>
+                    <span className="featured-card-link">Get Quote →</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+
+          <div style={{ textAlign: "center", marginTop: "2rem" }}>
+            <Link to="/products" className="hero-cta">
+              View All Products
+            </Link>
           </div>
-        )}
-
-        <div style={{ textAlign: "center", marginTop: "2rem" }}>
-          <Link to="/products" className="hero-cta">
-            View All Products
-          </Link>
         </div>
       </section>
 
@@ -311,78 +330,82 @@ function Home() {
         className={`testimonials-section ${testimonialsVisible ? "in-view" : ""}`}
         ref={testimonialsRef}
       >
-        <span className="section-tag" style={{ textAlign: "center", display: "block" }}>
-          Customer Stories
-        </span>
-        <h2 className="section-heading" style={{ textAlign: "center" }}>
-          What Our Buyers Say
-        </h2>
+        <div className="section-inner">
+          <span className="section-tag" style={{ textAlign: "center", display: "block" }}>
+            Customer Stories
+          </span>
+          <h2 className="section-heading" style={{ textAlign: "center" }}>
+            What Our Buyers Say
+          </h2>
 
-        <div className="testimonials-grid">
-          {[
-            {
-              name: "Rajesh Kumar",
-              business: "Kumar Hotels Pvt Ltd",
-              rating: 5,
-              review:
-                "Consistent quality and on-time bulk delivery — Agriwhale has become our go-to supplier for coconuts and spices.",
-            },
-            {
-              name: "Meena Rao",
-              business: "Rao Foods & Catering",
-              rating: 5,
-              review:
-                "The rice and dal quality is excellent, and pricing works well for our catering volumes.",
-            },
-            {
-              name: "Sanjay Iyer",
-              business: "Iyer Retail Mart",
-              rating: 4,
-              review:
-                "Reliable sourcing and good communication. Great for a retail shop needing steady stock.",
-            },
-          ].map((t) => (
-            <div className="testimonial-card" key={t.name}>
-              <div className="testimonial-rating">{"★".repeat(t.rating)}</div>
-              <p className="testimonial-review">"{t.review}"</p>
-              <p className="testimonial-name">{t.name}</p>
-              <p className="testimonial-business">{t.business}</p>
-            </div>
-          ))}
+          <div className="testimonials-grid">
+            {[
+              {
+                name: "Rajesh Kumar",
+                business: "Kumar Hotels Pvt Ltd",
+                rating: 5,
+                review:
+                  "Consistent quality and on-time bulk delivery — Agriwhale has become our go-to supplier for coconuts and spices.",
+              },
+              {
+                name: "Meena Rao",
+                business: "Rao Foods & Catering",
+                rating: 5,
+                review:
+                  "The rice and dal quality is excellent, and pricing works well for our catering volumes.",
+              },
+              {
+                name: "Sanjay Iyer",
+                business: "Iyer Retail Mart",
+                rating: 4,
+                review:
+                  "Reliable sourcing and good communication. Great for a retail shop needing steady stock.",
+              },
+            ].map((t) => (
+              <div className="testimonial-card" key={t.name}>
+                <div className="testimonial-rating">{"★".repeat(t.rating)}</div>
+                <p className="testimonial-review">"{t.review}"</p>
+                <p className="testimonial-name">{t.name}</p>
+                <p className="testimonial-business">{t.business}</p>
+              </div>
+            ))}
+          </div>
+          {/* TODO: replace with real customer testimonials once Rupesh shares them */}
         </div>
-        {/* TODO: replace with real customer testimonials once Rupesh shares them */}
       </section>
 
       {/* Contact Section */}
       <section className="contact-section" id="contact">
-        <div className="contact-grid">
-          <div className="contact-info">
-            <span className="section-tag">Get in Touch</span>
-            <h2 className="section-heading">Let's Talk Business</h2>
-            <p className="section-text">
-              Have a bulk order, wholesale inquiry, or just a question about
-              our products? Reach out — we typically respond within a
-              business day.
-            </p>
-
-            <div className="contact-detail-row">
-              <span>📞</span>
-              <a href="tel:+919148249999">+91 9148249999</a>
-            </div>
-            <div className="contact-detail-row">
-              <span>✉️</span>
-              <a href="mailto:info@agriwhale.com">info@agriwhale.com</a>
-            </div>
-            <div className="contact-detail-row">
-              <span>📍</span>
-              <p>
-                No.41, GR Kalyana Mantap, Hebbal Address ORR, Bangalore -
-                560094
+        <div className="section-inner">
+          <div className="contact-grid">
+            <div className="contact-info">
+              <span className="section-tag">Get in Touch</span>
+              <h2 className="section-heading">Let's Talk Business</h2>
+              <p className="section-text">
+                Have a bulk order, wholesale inquiry, or just a question about
+                our products? Reach out — we typically respond within a
+                business day.
               </p>
-            </div>
-          </div>
 
-          <ContactForm />
+              <div className="contact-detail-row">
+                <span>📞</span>
+                <a href="tel:+919148249999">+91 9148249999</a>
+              </div>
+              <div className="contact-detail-row">
+                <span>✉️</span>
+                <a href="mailto:info@agriwhale.com">info@agriwhale.com</a>
+              </div>
+              <div className="contact-detail-row">
+                <span>📍</span>
+                <p>
+                  No.41, GR Kalyana Mantap, Hebbal Address ORR, Bangalore -
+                  560094
+                </p>
+              </div>
+            </div>
+
+            <ContactForm />
+          </div>
         </div>
       </section>
 

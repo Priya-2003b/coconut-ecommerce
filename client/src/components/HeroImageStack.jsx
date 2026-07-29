@@ -43,7 +43,7 @@ function HeroImageStack() {
                 key={i}
                 className={`hero-stack-card ${isActive ? "active" : ""}`}
                 style={{
-                  transform: `translateX(${offset * 14}px) rotate(${offset * 6}deg)`,
+                  transform: `translateX(${offset * 22}px) rotate(${offset * 6}deg)`,
                   zIndex: heroImages.length - Math.abs(offset),
                   opacity: Math.abs(offset) > 1 ? 0 : 1,
                 }}

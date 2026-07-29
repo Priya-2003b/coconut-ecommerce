@@ -5,7 +5,7 @@ export const getProducts = async (req, res) => {
   try {
     const { category } = req.query;
     const filter = category ? { category } : {};
-    const products = await Product.find(filter).sort({ createdAt: -1 });
+    const products = await Product.find(filter).sort({ category: 1, name: 1 });
     res.json(products);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -41,6 +41,31 @@ export const updateProduct = async (req, res) => {
     });
     if (!product) return res.status(404).json({ message: "Product not found" });
     res.json(product);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// PUT /api/products/category/rename  (admin only)
+// Renames a category across every product that uses it
+export const renameCategory = async (req, res) => {
+  try {
+    const { oldCategory, newCategory } = req.body;
+
+    if (!oldCategory || !newCategory) {
+      return res.status(400).json({ message: "Both oldCategory and newCategory are required" });
+    }
+
+    const result = await Product.updateMany(
+      { category: oldCategory },
+      { category: newCategory }
+    );
+
+    res.json({
+      message: `Renamed category "${oldCategory}" to "${newCategory}"`,
+      matchedCount: result.matchedCount,
+      modifiedCount: result.modifiedCount,
+    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

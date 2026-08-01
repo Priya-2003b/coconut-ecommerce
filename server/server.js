@@ -16,7 +16,27 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({ origin: process.env.CLIENT_URL || "*" }));
+// Allow both local development and the live Vercel frontend
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://agriwhale.vercel.app",
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (e.g. Postman, server-to-server) and
+      // any origin in the allowed list
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 // Routes
@@ -28,6 +48,7 @@ app.use("/api/subscribers", subscriberRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/gallery", galleryRoutes);
 app.use("/api/reviews", reviewRoutes); // Add this line to include review routes
+
 app.get("/", (req, res) => {
   res.send("Coconut/Agro catalog API is running");
 });

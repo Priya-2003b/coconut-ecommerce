@@ -17,10 +17,27 @@ import AdminInquiries from "./pages/admin/AdminInquiries";
 import AdminGallery from "./pages/admin/AdminGallery";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import AdminReviews from "./pages/admin/AdminReviews";
+import Reviews from "./pages/Reviews";
+
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
+
+  return null;
+}
 
 function App() {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Routes>
       <Route path="/" element={<Home />} />
@@ -30,12 +47,22 @@ function App() {
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/reviews" element={<Reviews />} />
 
       <Route
         path="/my-inquiries"
         element={
           <ProtectedRoute>
             <MyInquiries />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/admin/reviews"
+        element={
+          <ProtectedRoute adminOnly>
+            <AdminReviews />
           </ProtectedRoute>
         }
       />

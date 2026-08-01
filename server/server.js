@@ -10,6 +10,7 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import subscriberRoutes from "./routes/subscriberRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import galleryRoutes from "./routes/galleryRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js"; // Import the review routes
 
 dotenv.config();
 
@@ -26,7 +27,7 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/subscribers", subscriberRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/gallery", galleryRoutes);
-
+app.use("/api/reviews", reviewRoutes); // Add this line to include review routes
 app.get("/", (req, res) => {
   res.send("Coconut/Agro catalog API is running");
 });

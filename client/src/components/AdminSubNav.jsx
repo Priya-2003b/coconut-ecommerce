@@ -34,6 +34,13 @@ function AdminSubNav() {
       >
         Gallery
       </NavLink>
+
+      <NavLink
+        to="/admin/reviews"
+        className={({ isActive }) => `admin-subnav-link ${isActive ? "active" : ""}`}
+      >
+        Reviews
+      </NavLink>
     </div>
   );
 }

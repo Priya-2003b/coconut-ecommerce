@@ -2,7 +2,7 @@
 // Sections to build: Hero banner, About summary, Featured products, Gallery preview, Contact CTA
 
 import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import api from "../api/axios";
 import HeroImageStack from "../components/HeroImageStack";
 
@@ -69,10 +69,12 @@ function StatCounter({ end, suffix = "", label }) {
 
 function Home() {
   const [featured, setFeatured] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [heroRef, heroVisible] = useReveal();
   const [pillarsRef, pillarsVisible] = useReveal();
   const [whyRef, whyVisible] = useReveal();
   const [testimonialsRef, testimonialsVisible] = useReveal();
+  const location = useLocation();
 
   useEffect(() => {
     api
@@ -81,13 +83,58 @@ function Home() {
       .catch((err) => console.error(err));
   }, []);
 
+  useEffect(() => {
+  api
+    .get("/reviews")
+    .then((res) => setReviews(res.data))
+    .catch((err) => console.error(err));
+  }, []);
+
+  // Scroll to the section matching the URL hash (e.g. /#contact) once the page loads
+      useEffect(() => {
+      if (location.hash) {
+        const id = location.hash.replace("#", "");
+        const el = document.getElementById(id);
+        if (el) {
+          setTimeout(() => {
+            el.scrollIntoView({ behavior: "smooth" });
+          }, 100);
+        }
+      }
+    }, [location]);
+
+      const sampleReviews = [
+      {
+        _id: "sample1",
+        name: "Rajesh Kumar",
+        company: "Kumar Hotels Pvt Ltd",
+        rating: 5,
+        review: "Consistent quality and on-time bulk delivery — Agriwhale has become our go-to supplier for coconuts and spices.",
+      },
+      {
+        _id: "sample2",
+        name: "Meena Rao",
+        company: "Rao Foods & Catering",
+        rating: 5,
+        review: "The rice and dal quality is excellent, and pricing works well for our catering volumes.",
+      },
+      {
+        _id: "sample3",
+        name: "Sanjay Iyer",
+        company: "Iyer Retail Mart",
+        rating: 4,
+        review: "Reliable sourcing and good communication. Great for a retail shop needing steady stock.",
+      },
+    ];
+
+
   return (
     <div>
       {/* Hero Section */}
       <section className={`hero ${heroVisible ? "in-view" : ""}`} ref={heroRef}>
         <div className="section-inner hero-inner">
           <div className="hero-content">
-            <span className="hero-badge hero-fade-1">Est. in trust, grown with care</span>
+            <span className="hero-badge hero-fade-1">🌾 Est. in Trust, Grown with Care</span>
             <h1 className="hero-heading hero-fade-2">
               From Soil to Shelf,
               <br />
@@ -206,7 +253,7 @@ function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section className={`why-section ${whyVisible ? "in-view" : ""}`} ref={whyRef}>
+      {/* <section className={`why-section ${whyVisible ? "in-view" : ""}`} ref={whyRef}>
         <div className="section-inner">
           <span className="section-tag" style={{ textAlign: "center", display: "block" }}>
             Our Promise
@@ -231,7 +278,7 @@ function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* About summary */}
       <section className="about-section" id="about">
@@ -282,6 +329,32 @@ function Home() {
         </div>
       </section>
 
+      {/* Our Clients */}
+      <section className="clients-section">
+        <div className="section-inner">
+          <span className="section-tag" style={{ textAlign: "center", display: "block" }}>
+            Our Clients
+          </span>
+          <h2 className="section-heading" style={{ textAlign: "center" }}>
+            Trusted by Leading Brands
+          </h2>
+
+          <div className="clients-marquee">
+            <div className="clients-track">
+              {[...Array(2)].map((_, dupIndex) => (
+                <div className="clients-set" key={dupIndex}>
+                  {Array.from({ length: 14 }, (_, i) => `${i + 1}.png`).map((logo) => (
+                    <div className="client-logo" key={`${dupIndex}-${logo}`}>
+                      <img src={`/images/clients/${logo}`} alt="Client logo" />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Products */}
       <section className="featured-section">
         <div className="section-inner">
@@ -325,7 +398,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Testimonials teaser */}
       <section
         className={`testimonials-section ${testimonialsVisible ? "in-view" : ""}`}
         ref={testimonialsRef}
@@ -339,38 +412,21 @@ function Home() {
           </h2>
 
           <div className="testimonials-grid">
-            {[
-              {
-                name: "Rajesh Kumar",
-                business: "Kumar Hotels Pvt Ltd",
-                rating: 5,
-                review:
-                  "Consistent quality and on-time bulk delivery — Agriwhale has become our go-to supplier for coconuts and spices.",
-              },
-              {
-                name: "Meena Rao",
-                business: "Rao Foods & Catering",
-                rating: 5,
-                review:
-                  "The rice and dal quality is excellent, and pricing works well for our catering volumes.",
-              },
-              {
-                name: "Sanjay Iyer",
-                business: "Iyer Retail Mart",
-                rating: 4,
-                review:
-                  "Reliable sourcing and good communication. Great for a retail shop needing steady stock.",
-              },
-            ].map((t) => (
-              <div className="testimonial-card" key={t.name}>
+            {(reviews.length === 0 ? sampleReviews : reviews.slice(0, 3)).map((t) => (
+              <div className="testimonial-card" key={t._id}>
                 <div className="testimonial-rating">{"★".repeat(t.rating)}</div>
                 <p className="testimonial-review">"{t.review}"</p>
                 <p className="testimonial-name">{t.name}</p>
-                <p className="testimonial-business">{t.business}</p>
+                {t.company && <p className="testimonial-business">{t.company}</p>}
               </div>
             ))}
           </div>
-          {/* TODO: replace with real customer testimonials once Rupesh shares them */}
+
+          <div style={{ textAlign: "center", marginTop: "2rem" }}>
+            <Link to="/reviews" className="hero-cta">
+              Read All Reviews
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -423,19 +479,107 @@ function Home() {
   );
 }
 
-// Simple contact form — currently logs to console.
-// TODO: wire this to a real backend endpoint (e.g. POST /api/contact) that emails Rupesh,
-// or swap for a service like Formspree if a dedicated endpoint isn't built yet.
-function ContactForm() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+// Review submission form — new reviews go in as "pending" until admin approves them
+function ReviewForm({ onSubmitted }) {
+  const [form, setForm] = useState({ name: "", company: "", rating: 5, review: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Contact form submission:", form);
-    setSubmitted(true);
+    setError("");
+    setSending(true);
+    try {
+      await api.post("/reviews", form);
+      setSubmitted(true);
+      if (onSubmitted) onSubmitted();
+    } catch (err) {
+      setError(err.response?.data?.message || "Something went wrong — please try again.");
+    } finally {
+      setSending(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <div className="review-form-card review-success">
+        <p>Thanks, {form.name}! Your review will appear once approved.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form className="review-form-card" onSubmit={handleSubmit}>
+      <h3 className="review-form-heading">Leave a Review</h3>
+      {error && <p className="inquiry-error">{error}</p>}
+
+      <input
+        name="name"
+        placeholder="Your Name"
+        value={form.name}
+        onChange={handleChange}
+        required
+      />
+      <input
+        name="company"
+        placeholder="Company Name (optional)"
+        value={form.company}
+        onChange={handleChange}
+      />
+
+      <div className="review-star-picker">
+        {[1, 2, 3, 4, 5].map((n) => (
+          <span
+            key={n}
+            className={`review-star ${n <= form.rating ? "filled" : ""}`}
+            onClick={() => setForm({ ...form, rating: n })}
+          >
+            ★
+          </span>
+        ))}
+      </div>
+
+      <textarea
+        name="review"
+        placeholder="Share your experience with Agriwhale..."
+        rows={4}
+        value={form.review}
+        onChange={handleChange}
+        required
+      />
+
+      <button type="submit" className="hero-cta" disabled={sending}>
+        {sending ? "Submitting..." : "Submit Review"}
+      </button>
+    </form>
+  );
+}
+// Contact form — sends to backend, which emails the message via Nodemailer.
+function ContactForm() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSending(true);
+    try {
+      await api.post("/contact", form);
+      setSubmitted(true);
+    } catch (err) {
+      setError(
+        err.response?.data?.message || "Something went wrong — please try again."
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   if (submitted) {
@@ -448,6 +592,7 @@ function ContactForm() {
 
   return (
     <form className="contact-form-card" onSubmit={handleSubmit}>
+      {error && <p className="inquiry-error">{error}</p>}
       <input
         name="name"
         placeholder="Your Name"
@@ -471,8 +616,8 @@ function ContactForm() {
         onChange={handleChange}
         required
       />
-      <button type="submit" className="hero-cta">
-        Send Message
+      <button type="submit" className="hero-cta" disabled={sending}>
+        {sending ? "Sending..." : "Send Message"}
       </button>
     </form>
   );

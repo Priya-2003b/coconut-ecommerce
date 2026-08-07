@@ -2063,6 +2063,14 @@ a {
   margin-top: 0.15rem;
 }
 
+.navbar-admin .navbar-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+
 /* Admin login card variant */
 .auth-card-admin {
   border-top-color: var(--color-primary);

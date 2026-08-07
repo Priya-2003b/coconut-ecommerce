@@ -33,12 +33,24 @@ function Login() {
         </span>
         <h1 className="auth-heading">Login</h1>
 
-        {error && <p className="auth-error">{error}</p>}
+        {error && (
+          <p className="auth-error">
+            {error}
+            {error.toLowerCase().includes("locked") && (
+              <>
+                <br />
+                <span style={{ fontWeight: 400, fontSize: "0.82rem" }}>
+                  Please wait before trying again, or reset your password.
+                </span>
+              </>
+            )}
+          </p>
+        )}
 
         <form onSubmit={handleSubmit} className="auth-form">
           <input
-            type="email"
-            placeholder="Email"
+            type="text"
+            placeholder="Email or Phone Number"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required

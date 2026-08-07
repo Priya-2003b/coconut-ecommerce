@@ -405,13 +405,16 @@ a {
   background: #fdfaf5;
 }
 
-.pillars-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin: 3.25rem auto 0;
-  max-width: 1200px;
-}
+/* Pillars — 2 per row on mobile
+  .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .pillar-card h3 {
+    font-size: 1.05rem;
+  } */
 
 .pillar-card {
   background: #fff;
@@ -459,7 +462,7 @@ a {
     padding: 3.5rem 0;
     text-align: center;
   }
- .hero -inner {
+ .hero-inner {
     justify-content: center;
   }
   .hero-heading {
@@ -474,7 +477,7 @@ a {
   .pillars-section {
     padding: 3rem 0;
   }
-}
+  }
 
 /* Section tag + heading (shared) */
 .section-tag {
@@ -1273,7 +1276,7 @@ a {
   scroll-snap-type: x proximity;
   padding-bottom: 0.5rem;
   scrollbar-width: none; /* Firefox */
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .categories-grid::-webkit-scrollbar {
@@ -2062,14 +2065,6 @@ a {
   width: fit-content;
   margin-top: 0.15rem;
 }
-
-.navbar-admin .navbar-logo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.8rem;
-}
-
 
 /* Admin login card variant */
 .auth-card-admin {
@@ -3063,5 +3058,200 @@ a {
 
   .navbar-right {
     margin-left: auto;
+  }
+}
+
+/* ===== Mobile length reduction pass ===== */
+@media (max-width: 768px) {
+  /* Tighter section padding across the board */
+  .stats-strip {
+    padding: 1.5rem 0;
+  }
+
+  .pillars-section,
+  .categories-section,
+  .about-section,
+  .clients-section,
+  .featured-section,
+  .why-section,
+  .testimonials-section,
+  .contact-section {
+    padding: 2.25rem 1.5rem;
+  }
+
+  .section-heading {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .pillars-subtext {
+    margin-bottom: 0;
+  }
+
+  /* Pillars — smaller cards, tighter gap */
+  .pillars-grid {
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+  }
+
+  .pillar-card {
+    padding: 1.1rem 1rem;
+  }
+
+  .pillar-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .pillar-card p {
+    font-size: 0.82rem;
+  }
+
+  /* Featured products — smaller image, tighter card */
+  .featured-grid {
+    gap: 0.9rem;
+    margin-top: 1.25rem;
+  }
+
+  .featured-card-image {
+    height: 100px;
+  }
+
+  .featured-card-body {
+    padding: 0.75rem 0.9rem 1rem;
+  }
+
+  /* About section — shorter image */
+  .about-inner {
+    gap: 1.25rem;
+  }
+
+  .about-image img,
+  .about-image-fallback {
+    height: 200px;
+  }
+
+  .about-lede {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-text {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* Testimonials — tighter cards */
+  .testimonials-grid {
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .testimonial-card {
+    padding: 1.25rem;
+  }
+
+  /* Contact section */
+  .contact-grid {
+    gap: 1.5rem;
+  }
+
+  .contact-form-card {
+    padding: 1.5rem;
+  }
+  /* Pillars — 2 per row on mobile */
+  .pillars-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .pillar-card h3 {
+    font-size: 1.05rem;
+  }
+
+  /* Products page — 2 per row, Zepto-style compact cards */
+  .products-page {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .product-card {
+    border-radius: 12px;
+  }
+
+  .product-card-image {
+    height: 110px;
+  }
+
+  .product-card-body {
+    padding: 0.6rem 0.7rem 0.8rem;
+  }
+
+  .product-card-body h3 {
+    font-size: 0.85rem;
+    line-height: 1.25;
+    margin-bottom: 0.15rem;
+  }
+
+  .product-card-category {
+    font-size: 0.68rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .product-card-footer {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .product-card-price,
+  .product-card-quote,
+  .product-card-link {
+    font-size: 0.72rem;
+  }
+
+  .category-tabs {
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.25rem;
+    scrollbar-width: none;
+  }
+
+  .category-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-tab {
+    flex-shrink: 0;
+    padding: 0.4rem 1rem;
+    font-size: 0.78rem;
+  }
+  /* Gallery page — 2 per row on mobile */
+  .gallery-page {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem;
+  }
+
+  .gallery-item {
+    border-radius: 10px;
+  }
+
+  .gallery-item img {
+    height: 130px;
+  }
+
+  .gallery-caption {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.75rem;
   }
 }

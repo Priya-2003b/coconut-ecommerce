@@ -405,16 +405,13 @@ a {
   background: #fdfaf5;
 }
 
-/* Pillars — 2 per row on mobile
-  .pillars-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-  }
-
-  .pillar-card h3 {
-    font-size: 1.05rem;
-  } */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin: 3.25rem auto 0;
+  max-width: 1200px;
+}
 
 .pillar-card {
   background: #fff;

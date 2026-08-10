@@ -59,10 +59,10 @@ function Footer() {
           <p className="footer-line">📞 +91 9148249999</p>
 
           <div className="footer-socials">
-            <a href="#" aria-label="Facebook">f</a>
-            <a href="#" aria-label="Pinterest">p</a>
-            <a href="#" aria-label="Twitter">t</a>
-            <a href="#" aria-label="Instagram">i</a>
+            {/* <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Pinterest">p</a> */}
+            {/* <a href="#" aria-label="Twitter">t</a> */}
+            <a href="https://www.instagram.com/_agriwhale?igsh=emp2cjlma3Jzd3l0" aria-label="Instagram">i</a>
           </div>
         </div>
 

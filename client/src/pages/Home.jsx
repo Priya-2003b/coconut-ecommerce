@@ -236,14 +236,14 @@ function Home() {
           <div className="categories-grid">
             {[
               { icon: "🌾", name: "Rice" },
-              { icon: "🥜", name: "Dry Fruits" },
-              { icon: "☕", name: "Coffee" },
-              { icon: "🍵", name: "Tea" },
-              { icon: "🌿", name: "Spices" },
-              { icon: "🥥", name: "Coconut Products" },
-              { icon: "🌱", name: "Pulses" },
+              { icon: "🥜", name: "Cashew Nuts" },
+              { icon: "☕", name: "Coffee powder" },
+              { icon: "🍵", name: "Tea powder" },
+              { icon: "🌿", name: "Cardamom" },
+              { icon: "🥥", name: "Coconuts" },
+              { icon: "🌱", name: "Dal" },
             ].map((cat) => (
-              <Link to="/products" key={cat.name} className="category-card">
+              <Link to={`/products?category=${encodeURIComponent(cat.name)}`} key={cat.name} className="category-card">
                 <div className="category-card-icon">{cat.icon}</div>
                 <h3>{cat.name}</h3>
               </Link>

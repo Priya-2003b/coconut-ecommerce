@@ -21,6 +21,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://agriwhale.vercel.app",
   "https://new.agriwhale.com",
+  "https://agriwhale.com",
 ];
 
 app.use(

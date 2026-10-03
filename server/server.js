@@ -20,6 +20,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://agriwhale.vercel.app",
+  "https://new.agriwhale.com",
 ];
 
 app.use(
